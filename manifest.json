@@ -1,0 +1,21 @@
+
+{
+    "manifest_version": 3,
+    "name": "PWGen",
+    "version": "1.0",
+    "description": "A browser extension for generating passwords using Rust and SHA-256 hashing.",
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+        }
+    },
+    "permissions": ["clipboardWrite", "storage"],
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+}

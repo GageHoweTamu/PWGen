@@ -1,0 +1,26 @@
+/* styles.css */
+
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    background-color: #333;
+    color: #fff;
+    font-family: 'Roboto';
+}
+
+input {
+    background-color: #222;
+    color: #889cff;
+    border: none;
+    padding:  5px;
+    font-family: 'Roboto';
+}
+
+
+
+/* Useful:
+
+fonts.google.com
+
+*/
