@@ -1,4 +1,6 @@
-# Rust Password Manager
+# Rust Password Generator
+
+
 
 TO BUILD/CHANGE:
 
