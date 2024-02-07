@@ -1,8 +1,12 @@
-
 {
     "manifest_version": 3,
     "name": "PWGen",
     "version": "1.0",
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';",
+        "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline'; child-src 'self';",
+        "default-src": "script-src 'self'; object-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+    },
     "description": "A browser extension for generating passwords using Rust and SHA-256 hashing.",
     "action": {
         "default_popup": "index.html",

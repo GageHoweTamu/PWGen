@@ -1,12 +1,10 @@
-<!-- File: index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'wasm-eval' 'unsafe-eval';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator Extension</title>
+
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -17,11 +15,12 @@
         <input type="text" id="website" name="website"><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email"><br>
-        <label for="key">Key (Password):</label><br>
+        <label for="key">Password (Seed):</label><br>
         <input type="password" id="key" name="key"><br><br>
         <button type="button" id="copy-password">Copy Password</button>
-
     </form>
-    <script type="module" src="./main.js"></script>
+    
+    <!-- Ensure to include your script using the appropriate CSP -->
+    <script src="./main.js" type="module"></script>
 </body>
 </html>

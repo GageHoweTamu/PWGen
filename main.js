@@ -1,9 +1,6 @@
 // main.js
 
-import init, { generate_password } from './static/wasm.js';
-
-await init();
-
+// import init, { generate_password } from './static/wasm.js';
 
 
 const websiteInput = document.getElementById('website');
@@ -11,13 +8,17 @@ const emailInput = document.getElementById('email');
 const keyInput = document.getElementById('key');
 const copyButton = document.getElementById('copy-password'); // Updated ID
 
-async function loadWasmModule() {
-  const response = await fetch('path_to_your_wasm_file.wasm');
-  const bytes = await response.arrayBuffer();
-  const module = await WebAssembly.compile(bytes);
-  const instance = new WebAssembly.Instance(module, imports);
+async function generate_password(email, website, key) {
+  const input = email + website + key;
+  const encoder = new TextEncoder();
+  const data = encoder.encode(input);
+  const hash = await window.crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hash)); 
+  const password = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
 
-  // You can now use the instance to call your WASM functions
+  console.log('printing from main.js, password: ', password);
+
+  return password;
 }
 
 // Function to get the current tab's URL

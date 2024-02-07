@@ -1,4 +1,7 @@
 // lib.rs
+
+// this isnt important
+
 // Compile with "wasm-pack build --target web --out-name wasm --out-dir ./static"
 
 use sha2::{Digest, Sha256};
