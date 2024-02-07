@@ -4,6 +4,12 @@
 
 
 
+### Code
+
+```
+foo
+```
+
 ### Story Time
 
 I originally wrote the password generation function in Rust, with wasm-bindgen glue for interfacing from JavaScript, but later learned that as of Manifest V3 (MV3), the unsafe-eval and wasm-eval directives, required for arbitrary WebAssembly code execution, are not allowed within the content_security_policy for Chrome extensions due to security reasons. Sadge.
