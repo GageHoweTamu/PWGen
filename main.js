@@ -2,12 +2,12 @@
 
 import init, { generate_password } from './static/wasm.js';
 
+await init();
+
 const websiteInput = document.getElementById('website');
 const emailInput = document.getElementById('email');
 const keyInput = document.getElementById('key');
 const copyButton = document.getElementById('copy-password'); // Updated ID
-
-
 
 // Function to get the current tab's URL
 async function getCurrentTabUrl() {
@@ -59,7 +59,7 @@ copyButton.addEventListener('click', async () => {
 
   try {
     console.log('1');
-    const password = generate_password(website, email, key);
+    const password = await generate_password(website, email, key);
     console.log('2');
     saveEmail(email);
     console.log('4');
@@ -69,6 +69,5 @@ copyButton.addEventListener('click', async () => {
     console.log('Password copied to clipboard');
   } catch (error) {
     console.error('Error generating password:', error);
-    // Handle error appropriately
   }
 });
