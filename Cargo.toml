@@ -17,4 +17,4 @@ wasm-bindgen = "0.2"
 name = "browser_extension"
 path = "lib.rs"
 
-crate-type = ["cdylib", "rlib"]
+crate-type = ["cdylib"]

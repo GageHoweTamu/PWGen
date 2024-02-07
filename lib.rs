@@ -4,8 +4,6 @@
 use sha2::{Digest, Sha256};
 use wasm_bindgen::prelude::*;
 
-// GENERATE_PASSWORD FUNCTION: TAKES EMAIL, WEBSITE, AND KEY AS INPUT AND RETURNS A PASSWORD
-
 #[wasm_bindgen]
 pub fn generate_password(email: &str, website: &str, key: &str) -> String {
     let input = format!("{}{}{}", email, website, key);

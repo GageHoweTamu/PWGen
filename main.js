@@ -1,19 +1,18 @@
 // main.js
 
-import { generate_password } from './static/wasm.js';
+import init, { generate_password } from './static/wasm.js';
 
 const websiteInput = document.getElementById('website');
 const emailInput = document.getElementById('email');
 const keyInput = document.getElementById('key');
 const copyButton = document.getElementById('copy-password'); // Updated ID
 
+
+
 // Function to get the current tab's URL
 async function getCurrentTabUrl() {
-  console.log('getCurrentTabUrl() called');
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  console.log('getCurrentTabUrl() returned ', tab.url);
-  return clean_url(tab.url); // why does this not work? Error: Uncaught (in promise) TypeError: Cannot read properties of undefined (reading '__wbindgen_add_to_stack_pointer')
-  // return tab.url;
+  return clean_url(tab.url);
 }
 
 async function saveEmail(email) {
@@ -22,7 +21,6 @@ async function saveEmail(email) {
 }
 
 async function autofillEmail() {
-  console.log('autofillEmail() called');
   const data = await chrome.storage.local.get('email');
   const savedEmail = data.email || '';
   emailInput.value = savedEmail;
@@ -30,7 +28,6 @@ async function autofillEmail() {
 
 getCurrentTabUrl().then(url => {
   websiteInput.value = url;
-  console.log('getCurrentTabUrl() returned', url);
 });
 
 window.addEventListener('load', async () => {
@@ -50,7 +47,7 @@ function clean_url(url) { // Cleans urls: eg. https://github.com/GageHoweTamu/PW
 
 }
 
-copyButton.addEventListener('click', async () => { // generate and copy password
+copyButton.addEventListener('click', async () => {
   const website = websiteInput.value.trim();
   const email = emailInput.value.trim();
   const key = keyInput.value.trim();
@@ -60,17 +57,18 @@ copyButton.addEventListener('click', async () => { // generate and copy password
     return;
   }
 
-  const password = await new Promise(resolve => {
-    const result = generate_password(email, website, key);
-    resolve(result);
-  });
-
-  await saveEmail(email);
-
-  navigator.clipboard.writeText(password).then(function() {
+  try {
+    console.log('1');
+    const password = generate_password(website, email, key);
+    console.log('2');
+    saveEmail(email);
+    console.log('4');
+    await navigator.clipboard.writeText(password);
+    console.log('4');
     alert('Password copied to clipboard!');
     console.log('Password copied to clipboard');
-  }, function(err) {
-    console.error('Could not copy text: ', err);
-  });
+  } catch (error) {
+    console.error('Error generating password:', error);
+    // Handle error appropriately
+  }
 });
