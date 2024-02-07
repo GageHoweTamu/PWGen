@@ -16,7 +16,6 @@ I originally wrote the password generation function in Rust, with wasm-bindgen g
 
 So in summary, as of Spring 2024, you cannot use WebAssembly in a Chrome extension with MV3 due to the restrictions imposed by the CSP. Developers have attempted to work around this by using different methods to load WebAssembly in MV3, such as using static imports instead of importScripts, but these approaches are hacky at best and face similar limitations due to the CSP restrictions.
 
-Other links:
-
 https://issuetracker.google.com/issues/40057219?pli=1
+
 https://github.com/GoogleChrome/chrome-extensions-samples/issues/775
