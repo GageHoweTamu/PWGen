@@ -7,8 +7,6 @@ edition = "2021"
 
 description = "My first browser extension, using basic JS and Rust/WASM!"
 
-licence = "none"
-
 [dependencies]
 
 sha2 = "0.10.8"

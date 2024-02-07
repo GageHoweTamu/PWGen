@@ -1,1 +1,1 @@
-/Users/gagehowe/Downloads/browser_extension/target/wasm32-unknown-unknown/release/browser_extension.wasm: /Users/gagehowe/Downloads/browser_extension/lib.rs
+/Users/gagehowe/Downloads/PWGen/target/wasm32-unknown-unknown/release/browser_extension.wasm: /Users/gagehowe/Downloads/PWGen/lib.rs

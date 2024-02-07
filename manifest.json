@@ -12,7 +12,7 @@
         "128": "icon.png"
         }
     },
-    "permissions": ["clipboardWrite", "storage"],
+    "permissions": ["clipboardWrite", "storage", "activeTab"],
     "icons": {
         "16": "icon.png",
         "48": "icon.png",
