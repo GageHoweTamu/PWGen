@@ -1,4 +1,4 @@
-# Password Generator
+# PWGen
 
 ### Summary
 
