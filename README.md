@@ -18,7 +18,7 @@ foo
 
 ## TODO
 
-Build and test for Firefox-based browsers; collaborators are welcome
+Build and test for Firefox-based browsers; add features; market to a general audience
 
 ## Story Time
 
