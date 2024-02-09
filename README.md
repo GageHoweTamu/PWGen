@@ -1,6 +1,8 @@
 # PWGen
 
-### Summary
+This is an open-source project, and is open to collaborators! If it's your first time collaborating on a browser extension/JS project, see LEARN.md and CONTRIBUTING.md f.or resources. If you have questions, don't hesitate to reach out at howe.gaged@gmail.com
+
+## Summary
 
 <img width="283" alt="Screenshot 2024-02-07 at 11 37 24 AM" src="https://github.com/GageHoweTamu/PWGen/assets/116420022/af5cc489-c6ba-45a5-849f-a9e7fc156635">
 
@@ -8,17 +10,17 @@ PWGen is a password generator that takes three parameters: your current website,
 
 PWGen saves your email and automatically populates the website box, meaning you can quickly generate passwords from your `main password`.
 
-### Code
+## Code
 
 ```
 foo
 ```
 
-### TODO
+## TODO
 
 Build and test for Firefox-based browsers; collaborators are welcome
 
-### Story Time
+## Story Time
 
 I originally wrote the password generation function in Rust, with wasm-bindgen glue for interfacing from JavaScript, but later learned that as of Manifest V3 (MV3), the unsafe-eval and wasm-eval directives, required for arbitrary WebAssembly code execution, are not allowed within the content_security_policy for Chrome extensions due to security reasons. Sadge.
 
