@@ -7,6 +7,7 @@ const websiteInput = document.getElementById('website');
 const emailInput = document.getElementById('email');
 const keyInput = document.getElementById('key');
 const copyButton = document.getElementById('copy-password'); // Updated ID
+const messageElement = document.getElementById('message');
 
 async function generate_password(email, website, key) {
   const input = email + website + key;
@@ -14,7 +15,16 @@ async function generate_password(email, website, key) {
   const data = encoder.encode(input);
   const hash = await window.crypto.subtle.digest('SHA-256', data);
   const hashArray = Array.from(new Uint8Array(hash)); 
-  const password = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+  let password = btoa(String.fromCharCode.apply(null, hashArray)).substring(0, 10); // Convert to base64 and truncate
+
+  const numbers = '123456789';
+  const symbols = '!?.:;_^,';
+
+  const numberIndex = hashArray[hashArray.length - 2] % numbers.length;
+  const symbolIndex = hashArray[hashArray.length - 1] % symbols.length;
+
+  password += numbers[numberIndex];
+  password += symbols[symbolIndex];
 
   console.log('printing from main.js, password: ', password);
 
@@ -51,12 +61,10 @@ emailInput.addEventListener('input', async () => {
   await saveEmail(emailInput.value);
 });
 
-function clean_url(url) { // Cleans urls: eg. https://github.com/GageHoweTamu/PWGen -> github.com
-  const start = url.indexOf("://") >= 0 ? url.indexOf("://") + 3 : 0;
-  const end = url.slice(start).indexOf('/') >= 0 ? url.slice(start).indexOf('/') : url.length - start;
-  return url.slice(start, start + end);
-
-
+function clean_url(url) {
+  const urlObj = new URL(url);
+  const domain = urlObj.hostname.split('.').slice(-2).join('.');
+  return domain;
 }
 
 copyButton.addEventListener('click', async () => {
@@ -65,10 +73,9 @@ copyButton.addEventListener('click', async () => {
   const key = keyInput.value.trim();
 
   if (!website || !email || !key) {
-    alert('Please fill all fields');
+    messageElement.textContent = 'Please fill all fields!';
     return;
   }
-
   try {
     console.log('1');
     const password = await generate_password(website, email, key);
@@ -76,10 +83,10 @@ copyButton.addEventListener('click', async () => {
     saveEmail(email);
     console.log('4');
     await navigator.clipboard.writeText(password);
-    console.log('4');
-    alert('Password copied to clipboard!');
+    messageElement.textContent = 'Password copied to clipboard!';
     console.log('Password copied to clipboard');
   } catch (error) {
+    messageElement.textContent = 'Error generating password';
     console.error('Error generating password:', error);
   }
 });
