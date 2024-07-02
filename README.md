@@ -9,23 +9,3 @@ This is an open-source project, and is open to collaborators! If it's your first
 PWGen is a password generator that takes three parameters: your current website, an email or username, and a password. The algorithm is deterministic, meaning it always results to the same password. This means PWGen never stores your passwords; they will be generated again with your `seed` as a key. Protect your with your life, and don't tell anyone! :)
 
 PWGen saves your email and automatically populates the website box, meaning you can quickly generate passwords from your `seed`.
-
-## Code
-
-```
-foo
-```
-
-## TODO
-
-Build and test for Firefox-based browsers; add features; market to a general audience
-
-## Story Time
-
-I originally wrote the password generation function in Rust, with wasm-bindgen glue for interfacing from JavaScript, but later learned that as of Manifest V3 (MV3), the unsafe-eval and wasm-eval directives, required for arbitrary WebAssembly code execution, are not allowed within the content_security_policy for Chrome extensions due to security reasons. Sadge.
-
-So in summary, as of Spring 2024, you cannot use WebAssembly in a Chrome extension with MV3 due to the restrictions imposed by the CSP. Developers have attempted to work around this by using different methods to load WebAssembly in MV3, such as using static imports instead of importScripts, but these approaches are hacky at best and face similar limitations due to the CSP restrictions.
-
-https://issuetracker.google.com/issues/40057219?pli=1
-
-https://github.com/GoogleChrome/chrome-extensions-samples/issues/775
